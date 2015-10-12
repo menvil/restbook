@@ -7,7 +7,18 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @var string
      */
-    protected $baseUrl = 'http://localhost';
+    protected $baseUrl = 'http://restbook.loc';
+
+    /**
+     * Prepare for test
+     *
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->prepareForTests();
+    }
 
     /**
      * Creates the application.
@@ -21,5 +32,14 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    /**
+     * Migrate database
+     *
+     */
+    private function prepareForTests()
+    {
+        Artisan::call('db:seed');
     }
 }

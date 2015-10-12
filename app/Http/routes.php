@@ -12,5 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return View::make('index');
 });
+
+
+Route::group(array('prefix' => 'api'), function() {
+
+    Route::resource('books', 'BookController');
+
+});
+
+
